@@ -5,7 +5,7 @@
 # 🌿 גגון · RoofRoot — תוכנית עסקית ב-LaTeX שנבנתה על ידי צוות סוכני AI
 
 **מטלה 02 · קורס AI (L07) · אוניברסיטת בר-אילן · נובמבר 2026**
-קוד קבוצה: `xxxxxxxx` <!-- TODO: replace with your 8-character group code -->
+קוד קבוצה: `biu-rl555`
 
 [📄 **ה-PDF המוגמר**](main.pdf) · [PRD](PRD.md) · [PLAN](PLAN.md) · [TODO](TODO.md) · [Prompts](prompts/) · [Skills](.claude/skills/) · [חקר אירועים](incidents/) · [דוחות צוות אדום](qa-reports/)
 

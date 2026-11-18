@@ -35,4 +35,4 @@
 - [x] צילומי עמודים ל-README
 - [x] README.md
 - [x] GitHub repo ציבורי + push
-- [ ] (סטודנט) קובץ דיווח `xxxxxxxx-ex02.pdf` במודל
+- [ ] (סטודנט) קובץ דיווח `biu-rl555-ex02.pdf` במודל
