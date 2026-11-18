@@ -1,0 +1,21 @@
+# LaTeX intermediates
+*.aux
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.bbl
+*.bcf
+*.blg
+*.run.xml
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+build/
+# Python
+.venv/
+__pycache__/
+# OS
+.DS_Store
+# keep: main.pdf, figures/generated/*

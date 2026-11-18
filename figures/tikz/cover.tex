@@ -1,0 +1,36 @@
+% Cover art — city skyline with green roofs, drawn entirely in TikZ.
+% Used by \rrcover in main.tex. No external images (PRD FR-06).
+\begin{tikzpicture}[remember picture,overlay]
+  % sky gradient
+  \shade[top color=rrSky!70,bottom color=rrCream]
+    (current page.north west) rectangle (current page.south east);
+  % sun
+  \fill[rrTerra!80] ([xshift=4.2cm,yshift=-6.2cm]current page.north west) circle (1.6cm);
+  \foreach \a in {0,30,...,330}
+    \draw[rrTerra!60,line width=1.2pt]
+      ([xshift=4.2cm,yshift=-6.2cm]current page.north west) ++(\a:1.95) -- ++(\a:0.55);
+  % skyline: (x-offset cm, width, height)
+  \begin{scope}[shift={(current page.south west)}]
+    \foreach \x/\w/\h/\c in {0/2.6/9/rrForest!85, 2.4/1.9/12.5/rrForest,
+        4.1/3.0/8/rrForest!75, 6.9/2.2/14/rrForest!95, 8.9/2.8/10/rrForest!80,
+        11.5/2.1/13/rrForest, 13.4/2.5/7.5/rrForest!70, 15.7/2.4/11/rrForest!90,
+        17.9/3.2/9.5/rrForest!80} {
+      \fill[\c] (\x,0) rectangle ++(\w,\h);
+      % windows
+      \foreach \wy in {1.2,2.4,...,\h} {
+        \pgfmathsetmacro{\wyy}{\wy}
+        \ifdim \wyy pt < \h pt
+          \foreach \wx in {0.35,0.95,...,\w} {
+            \pgfmathsetmacro{\wxx}{\wx+0.3}
+            \ifdim \wxx pt < \w pt
+              \fill[rrCream!35] (\x+\wx,\wy-0.6) rectangle ++(0.28,0.42);
+            \fi}
+        \fi}
+      % the green roof — the whole idea of RoofRoot
+      \fill[rrLeaf] (\x,\h) rectangle ++(\w,0.28);
+      \foreach \p in {0.2,0.55,...,\w}
+        \fill[rrLeaf!85!black] (\x+\p,\h+0.28) circle (0.16);
+    }
+    \fill[rrInk] (0,0) rectangle (21.1,0.6);
+  \end{scope}
+\end{tikzpicture}

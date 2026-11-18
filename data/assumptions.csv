@@ -1,0 +1,18 @@
+key,value,unit,note
+grow_area_m2,250,m2 per roof,net NFT channel area on a typical 6-8 floor building
+yield_kg_m2_yr,30,kg/m2/yr,conservative vs 41 kg/m2/yr reported by Barbosa et al. 2015
+price_ils_kg,24,ILS/kg,blended leafy greens + herbs (B2B restaurants + resident subscriptions)
+first_year_utilisation,0.5,ratio,new roof runs at half capacity in its first year
+roof_rent_share,0.08,ratio,share of roof revenue paid to the building committee
+opex_per_roof_ils,72000,ILS/yr,grower labour share + nutrients + water + power + logistics
+capex_per_roof_ils,180000,ILS,structural survey + NFT system + sensors + shade net
+saas_price_ils_month,1500,ILS/month,RootOS licence per external farm
+discount_rate,0.12,ratio,seed-stage discount rate for NPV
+tax_rate,0.23,ratio,Israeli corporate tax (applied only on positive EBIT)
+depreciation_years,5,years,straight-line on roof capex = roof contract length (red team #15)
+exit_ebitda_multiple,8,x,terminal value = final-year EBITDA x multiple (agri-tech comparables)
+contract_years,5,years,roof agreement with the building committee
+restaurant_price_ils_kg,22,ILS/kg,B2B price to restaurants
+b2b_share,0.6,ratio,share of produce volume sold to restaurants
+basket_price_ils_month,140,ILS/month,residents' green-basket subscription
+basket_kg_week,1.2,kg/week,produce per basket subscription

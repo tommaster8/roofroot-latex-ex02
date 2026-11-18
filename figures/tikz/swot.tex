@@ -1,0 +1,21 @@
+% SWOT 2x2 — internal (top) vs external (bottom), helpful (right, RTL) vs harmful (left).
+\begin{tikzpicture}[
+  q/.style={minimum width=7.1cm,minimum height=4.2cm,rounded corners=3mm,
+            fill=#1,draw=none},
+  t/.style={font=\sffamily\bfseries\Large,text=white,anchor=north east},
+  b/.style={font=\small,text width=6.2cm,align=right,anchor=north east}]
+  \node[q=rrForest]   (S) at (3.75,2.25) {};
+  \node[q=rrTerra]    (W) at (-3.75,2.25) {};
+  \node[q=rrLeaf!80!black] (O) at (3.75,-2.25) {};
+  \node[q=rrStone]    (T) at (-3.75,-2.25) {};
+  \foreach \n/\l in {S/חוזקות \en{S},W/חולשות \en{W},O/הזדמנויות \en{O},T/איומים \en{T}}
+    \node[t] at ([xshift=-3mm,yshift=-2mm]\n.north east) {\l};
+  \node[b,text=white] at ([xshift=-3mm,yshift=-11mm]S.north east)
+   {$\bullet$\ מודל ללא קרקע — הגג כבר קיים\\ $\bullet$\ \en{RootOS} מקטין תלות במגדל מומחה\\ $\bullet$\ החזר השקעה לגג תוך \RRroofPayback{} שנים\\ $\bullet$\ פי 12 פחות מים מגידול בשדה};
+  \node[b,text=white] at ([xshift=-3mm,yshift=-11mm]W.north east)
+   {$\bullet$\ מותג חדש ללא היסטוריה\\ $\bullet$\ תלות באישור ועד בית\\ $\bullet$\ צריכת חשמל למשאבות ולחיישנים\\ $\bullet$\ תפוקה מוגבלת לגג בודד};
+  \node[b,text=white] at ([xshift=-3mm,yshift=-11mm]O.north east)
+   {$\bullet$\ תוכניות אקלים עירוניות וגגות ירוקים\\ $\bullet$\ ביקוש גובר לתוצרת מקומית וטרייה\\ $\bullet$\ מכירת \en{RootOS} לחוות אחרות\\ $\bullet$\ התרחבות לחיפה ולבאר שבע};
+  \node[b,text=white] at ([xshift=-3mm,yshift=-11mm]T.north east)
+   {$\bullet$\ גלי חום וקיץ ארוך\\ $\bullet$\ ירידת מחירי ירקות עלים\\ $\bullet$\ מתחרים עם הון גדול (חוות אנכיות)\\ $\bullet$\ שינויי רגולציה בבנייה};
+\end{tikzpicture}

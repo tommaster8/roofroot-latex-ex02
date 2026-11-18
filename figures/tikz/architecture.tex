@@ -1,0 +1,21 @@
+% RootOS — sense → decide → act loop with a human in the loop.
+\begin{tikzpicture}[node distance=9mm and 12mm,
+  box/.style={rounded corners=2mm,draw=rrForest,line width=0.9pt,fill=#1,
+              minimum width=3.3cm,minimum height=1.25cm,align=center,font=\small},
+  box/.default=rrCream,
+  ar/.style={-{Stealth[length=3mm]},line width=1.1pt,color=rrForest},
+  lb/.style={font=\scriptsize\sffamily,text=rrStone,fill=white,inner sep=1pt}]
+  \node[box=rrSky!60] (sense) {\textbf{חיישנים}\\ \en{pH · EC · temp · flow}\\ מצלמת עלים};
+  \node[box=rrLeaf!40, left=of sense] (agent) {\textbf{סוכן \en{RootOS}}\\ \en{LLM planner}\\ + מודל ראייה};
+  \node[box=rrCream, left=of agent] (act) {\textbf{מפעילים}\\ משאבות הזנה\\ רשת הצללה · השקיה};
+  \node[box=rrTerra!25, below=of agent] (human) {\textbf{מגדל אנושי}\\ אישור פעולות חריגות};
+  \node[box=rrForest!15, above=of agent] (twin) {\textbf{תאום דיגיטלי}\\ \en{yield forecast}};
+  \node[box=rrCream, below=of sense] (market) {\textbf{ביקוש}\\ הזמנות מסעדות};
+  \draw[ar] (sense) -- node[lb,above]{\en{MQTT}} (agent);
+  \draw[ar] (agent) -- node[lb,above]{פקודה} (act);
+  \draw[ar] (act.south) |- node[lb,pos=0.25,left]{משוב} ([yshift=-3mm]human.west) ;
+  \draw[ar,rrTerra] (agent) -- node[lb,right]{הסלמה} (human);
+  \draw[ar] (agent) -- (twin);
+  \draw[ar] (market) -- node[lb,pos=0.45,below right]{תכנון קטיף} (agent);
+  \draw[ar,dashed] (twin.west) -| (act.north);
+\end{tikzpicture}

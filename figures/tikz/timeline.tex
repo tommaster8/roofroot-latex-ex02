@@ -1,0 +1,20 @@
+% Five-year roadmap — milestones on a horizontal time axis (right = start, RTL).
+\begin{tikzpicture}[x=-2.9cm,
+  ms/.style={circle,fill=#1,draw=white,line width=1.2pt,minimum size=4mm,inner sep=0},
+  lab/.style={font=\scriptsize,align=center,text width=2.6cm}]
+  \draw[line width=4pt,rrForest!25,line cap=round] (0,0) -- (5,0);
+  \foreach \i/\y in {0/2027,1/2028,2/2029,3/2030,4/2031,5/2032} {
+    \draw[rrForest,line width=0.8pt] (\i,-0.12) -- (\i,0.12);
+    \node[font=\sffamily\bfseries\small,text=rrForest] at (\i,-0.45) {\y};}
+  \foreach \t/\c/\up/\an/\txt in {
+      0.15/rrLeaf/1/south/{סבב \en{Seed}\\ \RRseed{} מיליון \shekel},
+      0.6/rrForest/-1/north/{\RRroofsFirst{} גגות פיילוט\\ בגוש דן},
+      0.85/rrLeaf/1/south/{\en{RootOS} גרסת\\ ייצור ראשונה},
+      2.1/rrTerra/-1/north/{סבב \en{A}\\ \RRseriesA{} מיליון \shekel},
+      2.6/rrLeaf/1/south/{לקוחות \en{SaaS}\\ ראשונים},
+      3.3/rrForest/-1/north/{\en{EBITDA}\\ חיובי},
+      4.4/rrTerra/1/south/{\RRroofsFinal{} גגות\\ ברחבי גוש דן}} {
+    \node[ms=\c] at (\t,0) {};
+    \draw[\c,line width=0.7pt] (\t,0) -- (\t,0.85*\up);
+    \node[lab,anchor=\an] at (\t,0.85*\up) {\txt};}
+\end{tikzpicture}

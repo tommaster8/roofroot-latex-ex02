@@ -1,0 +1,10 @@
+def decide(sensors, band, human):
+    ec = sensors.read("ec")            # read sensors first
+    if band.low <= ec <= band.high:
+        return "no_action"             # EC is inside the safe band
+    dose = propose_dosing(ec, band)    # LLM planner proposes a dose
+    if abs(dose.ml) > band.max_auto_ml:
+        # large change: escalate to a human grower
+        return human.ask_approval(dose)
+    pump.apply(dose)                   # small change: act and log
+    return "dosed"

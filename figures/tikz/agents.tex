@@ -1,0 +1,19 @@
+% How this document was produced: the agent team (appendix).
+\begin{tikzpicture}[node distance=7mm and 6mm,
+  ag/.style={rounded corners=2mm,draw=rrForest,line width=0.8pt,fill=#1,
+             minimum width=3.1cm,minimum height=11mm,align=center,font=\scriptsize},
+  ag/.default=rrCream,
+  ar/.style={-{Stealth[length=2.5mm]},line width=0.9pt,color=rrForest}]
+  \node[ag=rrTerra!30] (human) {\textbf{ראש צוות (אדם)}\\ חזון · אישור \en{PRD}};
+  \node[ag=rrForest!20,below=of human] (orch) {\textbf{\en{Orchestrator}}\\ \en{Opus} · \en{CLS} · נתונים};
+  \node[ag,below left=9mm and -4mm of orch] (w2) {\textbf{\en{writer-market}}\\ \en{Sonnet} · פרקים 4–6};
+  \node[ag,left=of w2] (w3) {\textbf{\en{writer-finance}}\\ \en{Sonnet} · פרקים 7–10};
+  \node[ag,right=of w2] (w1) {\textbf{\en{writer-strategy}}\\ \en{Sonnet} · פרקים 1–3};
+  \node[ag=rrLeaf!40,below=14mm of w2] (det) {\textbf{\en{qa-detector}}\\ צוות אדום · 8 \en{Skills}};
+  \node[ag=rrSky!60,right=12mm of det] (fix) {\textbf{\en{qa-fixer}}\\ \en{CLS} / \en{Skill} בלבד};
+  \draw[ar] (human) -- (orch);
+  \foreach \w in {w1,w2,w3} \draw[ar] (orch) -- (\w);
+  \foreach \w in {w1,w2,w3} \draw[ar] (\w) -- (det);
+  \draw[ar,rrTerra] (det) -- node[above,font=\scriptsize]{דוח} (fix);
+  \draw[ar,dashed] (fix.east) -- ++(0.7,0) |- node[pos=0.25,right,font=\scriptsize]{סבב חוזר} (orch.east);
+\end{tikzpicture}

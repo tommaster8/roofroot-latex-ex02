@@ -1,0 +1,73 @@
+\chapter{הפתרון: גגון ו-\en{RootOS}}\label{ch:solution}
+
+\section{מערכת הגג}
+בכל גג אנו מתקינים מערכת הידרופוניקה מסוג \en{NFT} (\en{Nutrient Film Technique}): תעלות משופעות שבהן זורמת שכבה דקה של תמיסת הזנה על שורשי הצמחים, והתמיסה חוזרת למאגר ונשאבת מחדש \cite{resh2012}. השיטה מתאימה לירקות עלים ולעשבי תבלין, שמהם מורכב סל המוצרים שלנו: חסות, תרד, בזיליקום, נענע ועוד. עקרונות הגידול בסביבה מבוקרת מפורטים אצל \cite{kozai2020}.
+
+הנתונים לגג אחד, כפי שהם מופיעים במודל, הם:
+\begin{itemize}
+  \item שטח גידול של \RRarea{} מ״ר;
+  \item תפוקה של \RRyield{} ק״ג/מ״ר בשנה, כלומר \RRroofKg{} ק״ג בשנה;
+  \item השקעה (\en{capex}) של \RRcapexRoof{} אלף \shekel{} לגג;
+  \item הכנסה של \RRroofRevenue{} אלף \shekel{} בשנה ותרומה תפעולית של \RRroofContribution{} אלף \shekel{} בשנה;
+  \item החזר השקעה תוך \RRroofPayback{} שנים.
+\end{itemize}
+
+\subsection{משוואת הכנסות הגג}
+ההכנסה השנתית של גג נקבעת על ידי שלושה גורמים בלבד:
+\begin{equation}\label{eq:roof-revenue}
+  R = A \cdot y \cdot p
+\end{equation}
+כאשר:
+\begin{itemize}
+  \item $R$ היא ההכנסה השנתית של הגג (\shekel{} בשנה);
+  \item $A$ הוא שטח הגידול, \RRarea{} מ״ר;
+  \item $y$ היא התפוקה, \RRyield{} ק״ג/מ״ר בשנה;
+  \item $p$ הוא המחיר הממוצע, \RRprice{} \shekel{} לק״ג.
+\end{itemize}
+הצבה במשוואה~\eqref{eq:roof-revenue} נותנת \RRroofKg{} ק״ג בשנה והכנסה של \RRroofRevenue{} אלף \shekel{} בשנה לגג. זו גם הסיבה שהתפוקה והמחיר הם שני המשתנים שנבחנים בניתוח הרגישות.
+
+\section{\en{RootOS}: סוכן הניהול}
+\en{RootOS} הוא סוכן בינה מלאכותית שמנהל את הגגות. הוא מורכב ממתכנן מבוסס מודל שפה (\en{LLM}) ומודל ראייה לזיהוי מצב העלים. הסוכן פועל בלולאה של הנמקה ופעולה, בהשראת הגישה של \cite{yao2023}: הוא קורא חיישנים, מנמק מה המצב, בוחר פעולה, ובודק את תוצאתה.
+
+הקלט הוא חיישני \en{pH}, \en{EC}, טמפרטורה וספיקה, וכן תמונות עלים. הפעולות הן הפעלת משאבות הזנה, רשת הצללה והשקיה. פעולה חריגה, למשל מינון גדול, אינה מתבצעת אוטומטית אלא מועברת לאישור מגדל אנושי (\en{human-in-the-loop}). בנוסף, תאום דיגיטלי מחשב תחזית תפוקה ומאפשר לתכנן קטיף מול הזמנות המסעדות. איור~\ref{fig:architecture} מציג את הארכיטקטורה.
+
+\begin{figure}[htbp]
+\centering
+\resizebox{\linewidth}{!}{\input{figures/tikz/architecture.tex}}
+\caption{ארכיטקטורת \en{RootOS}: חיישנים, סוכן, מפעילים ומגדל אנושי}\label{fig:architecture}
+\end{figure}
+
+הקוד הבא מדגים צעד החלטה מפושט. הוא אינו הקוד המלא של המערכת.
+
+\begin{pythonbox}[RootOS decision step (simplified)]
+def decide(sensors, band, human):
+    ec = sensors.read("ec")            # read sensors first
+    if band.low <= ec <= band.high:
+        return "no_action"             # EC is inside the safe band
+    dose = propose_dosing(ec, band)    # LLM planner proposes a dose
+    if abs(dose.ml) > band.max_auto_ml:
+        # large change: escalate to a human grower
+        return human.ask_approval(dose)
+    pump.apply(dose)                   # small change: act and log
+    return "dosed"
+\end{pythonbox}
+
+כלל האצבע פשוט: פעולות קטנות ומתועדות מתבצעות מיד, פעולות גדולות עוברות אדם. כך מקטינים את הסיכון שטעות של המודל תפגע ביבול.
+
+\section{יעילות במשאבים}
+איור~\ref{fig:resources} משווה גידול הידרופוני לגידול קונבנציונלי של חסה, על פי \cite{barbosa2015}: שימוש בקרקע, מים ואנרגיה.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.92\linewidth]{fig_resources}
+\caption{קרקע, מים ואנרגיה: הידרופוניקה מול גידול קונבנציונלי של חסה (המקור בגוף הטקסט)}\label{fig:resources}
+\end{figure}
+
+התוצאות מעורבות, ואנו מציגים אותן ביושר. לפי \cite{barbosa2015}, התפוקה בהידרופוניקה היא כ-\RRhydroYield{} ק״ג/מ״ר בשנה לעומת \RRfieldYield{} בגידול קונבנציונלי, כלומר ניצול שטח גבוה בהרבה. צריכת המים היא כ-\RRhydroWater{} ליטר לק״ג לעומת \RRfieldWater{}, כלומר חיסכון משמעותי. מנגד, צריכת האנרגיה של הידרופוניקה גבוהה בהרבה: כ-\RRhydroEnergy{} קילו-ג׳אול לק״ג בשנה לעומת \RRfieldEnergy{} בשדה, בעיקר בגלל משאבות ובקרת אקלים. בגג פתוח אנו נשענים על אור שמש ועל קירור טבעי, ולכן הפער קטן יותר מאשר בחממה סגורה, אך הוא אינו אפס. חיסכון באנרגיה אינו טענה שלנו.
+
+\begin{insightbox}
+היתרון של גגון הוא שטח ומים: אנו מגדלים במקום שבו אין שימוש אחר, ובמעגל מים סגור. את מחיר האנרגיה אנו מנהלים באמצעות \en{RootOS}, ומציגים אותו בגלוי למשקיעים.
+\end{insightbox}
+
+\section{מה המשמעות למשקיע}
+הפתרון מורכב משלושה חלקים שמחזקים זה את זה: נכס זול (גג), מערכת גידול מבוססת ונפוצה (\en{NFT}) \cite{resh2012} ושכבת ניהול (\en{RootOS}) שמורידה את עלות העבודה לגג. הראשון מוריד עלות שטח, השני מקטין סיכון טכנולוגי, והשלישי הוא הנכס שאפשר לרשת לחוות אחרות ולהרוויח ממנו מ-2029.

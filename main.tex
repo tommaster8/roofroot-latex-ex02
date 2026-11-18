@@ -1,0 +1,41 @@
+%% =====================================================================
+%%  RoofRoot · גגון — Business Plan 2027
+%%  Build:  make        (or: scripts/build.sh)
+%%  Engine: LuaLaTeX + biber · Class: roofroot.cls
+%% =====================================================================
+\documentclass{roofroot}
+\input{figures/generated/numbers.tex}   % every number in the text comes from data/
+\addbibresource{references.bib}
+
+\begin{document}
+
+\rrcover{גגון}
+        {\en{RoofRoot} — תוכנית עסקית 2027}
+        {חוות הידרופוניות על גגות בנייני מגורים,\\ מנוהלות על ידי סוכן \en{AI}.}
+        {מסמך חסוי למשקיעים · סבב \en{Seed} · \RRseed{} מיליון \shekel{} · נובמבר 2026}
+
+\pagenumbering{roman}
+\tableofcontents
+\listoffigures
+\listoftables
+\clearpage
+\pagenumbering{arabic}
+
+\input{chapters/01-executive-summary}
+\input{chapters/02-problem}
+\input{chapters/03-solution}
+\input{chapters/04-market}
+\input{chapters/05-business-model}
+\input{chapters/06-marketing}
+\input{chapters/07-operations}
+\input{chapters/08-team}
+\input{chapters/09-financials}
+\input{chapters/10-risks}
+\input{chapters/11-investment}
+
+\appendix
+\input{chapters/A-how-this-was-built}
+
+\rrbibliography
+
+\end{document}

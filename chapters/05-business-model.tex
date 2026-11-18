@@ -1,0 +1,72 @@
+\chapter{המודל העסקי}\label{ch:business-model}
+
+גגון מוכרת תוצרת טרייה מגגות מגורים ובהמשך גם תוכנה. המודל בנוי כך שכל גג הוא יחידה כלכלית עצמאית, עם השקעה ידועה והחזר צפוי, ושכל בניין מרוויח מהשותפות. פרק זה מציג את המודל ב-\en{Business Model Canvas}, את מקורות ההכנסה, את התמחור ואת כלכלת הגג היחיד.
+
+\section{\en{Business Model Canvas}}\label{sec:bmc}
+
+איור~\ref{fig:bmc} מציג את תשעת אבני הבניין של המודל לפי \cite{osterwalder2010}. שלוש נקודות מרכזיות: הצעת הערך היא ירק טרי שנקטף ביום האספקה במרחק קילומטר; הערוצים הם ועדי בתים, מסעדות ואפליקציה לתושבים; ומבנה העלויות מושתת על ההשקעה בגג ועל עבודת מגדלים מקצועיים.
+
+\begin{figure}[htbp]
+  \centering
+  \resizebox{\linewidth}{!}{\input{figures/tikz/bmc.tex}}
+  \caption{\en{Business Model Canvas} של גגון.}
+  \label{fig:bmc}
+\end{figure}
+
+\section{מקורות הכנסה}\label{sec:revenue-streams}
+
+לגגון שלושה מקורות הכנסה, שמצטרפים בהדרגה.
+
+\begin{enumerate}
+  \item \textbf{מכירת תוצרת למסעדות ובתי קפה (\en{B2B})}: חוזה אספקה שבועי לפי משקל, בתמחור קבוע לתקופה.
+  \item \textbf{מנוי \enquote{סל ירוק} לתושבים}: סל שבועי של ירקות ועשבי תבשיל תמורת תשלום חודשי.
+  \item \textbf{רישיון \en{RootOS}}: מנוי חודשי של חוות חיצוניות, החל מ-2029. עד 2031 מתוכננות \RRsaasFarmsFinal{} חוות.
+\end{enumerate}
+
+מכירת התוצרת היא המנוע הראשי. הרישיון הוא מקור הכנסה משני בהיקפו, אך עם שולי רווח גבוהים משום שאין בו עלות הון.
+
+\section{תמחור}\label{sec:pricing}
+
+המחיר הממוצע לק"ג בתוכנית הוא \RRprice~\shekel{}. הוא מורכב ממחיר סיטונאי נמוך יותר למסעדות ומחיר גבוה יותר למנויי הסל. טבלה~\ref{tab:pricing} מפרטת את המחירים. בהנחה של \RRbtwoBshare\% מהנפח למסעדות והיתר לתושבים, הממוצע המשוקלל הוא \RRweightedPrice~\shekel{} לק"ג, כלומר כ-\RRprice~\shekel{} לק"ג כבמודל.
+
+\begin{table}[htbp]
+\centering\small
+\rrstripes
+\begin{tabularx}{\linewidth}{>{\bfseries}p{3.6cm}XXX}
+\rrtablehead
+\rrth{מוצר} & \rrth{מחיר} & \rrth{נתח מהנפח} & \rrth{הערה} \\
+אספקה למסעדות (\en{B2B}) & \RRrestPrice~\shekel{} לק"ג & \RRbtwoBshare\% & חוזה שבועי, מחיר קבוע לרבעון \\
+\enquote{סל ירוק} לתושבים & \RRbasketMonth~\shekel{} לחודש, כ-\RRbasketKgPrice~\shekel{} לק"ג & היתר (משלים ל-100\%) & סל שבועי של כ-\RRbasketKgWeek{} ק"ג \\
+רישיון \en{RootOS} & 1,500~\shekel{} לחוות בחודש & לא רלוונטי & \RRsaasFarmsFinal{} חוות עד 2031 \\
+\textbf{ממוצע משוקלל לתוצרת} & \textbf{\RRweightedPrice~\shekel{} לק"ג} & 100\% & ממוצע משוקלל של מחיר המסעדות ומחיר הסל לפי נתחי הנפח \\
+\end{tabularx}
+\caption{תמחור לפי מוצר. הממוצע המשוקלל תואם את הנחת המודל הפיננסי.}
+\label{tab:pricing}
+\end{table}
+
+הרישיון מניב, ב-\RRsaasFarmsFinal{} חוות, כ-\RRsaasRevFinal{} מיליון \shekel{} בשנה (\RRsaasFarmsFinal{} כפול 1,500 כפול 12 חודשים). הוא קטן מהכנסות התוצרת, אך צומח בלי הוצאות הון.
+
+\section{כלכלת היחידה: גג אחד}\label{sec:unit-economics}
+
+גג אחד משתרע על \RRarea{} מ"ר של שטח גידול. בתפוקה של \RRyield{} ק"ג למ"ר בשנה הוא מניב \RRroofKg{} ק"ג בשנה. במחיר של \RRprice~\shekel{} לק"ג זה \RRroofRevenue{} אלפי \shekel{} הכנסה שנתית. ההשקעה הראשונית בגג היא \RRcapexRoof{} אלפי \shekel{}. הרווח התפעולי של הגג, לפני הוצאות כלליות של החברה, הוא \RRroofContribution{} אלפי \shekel{} בשנה. לכן ההשקעה חוזרת תוך \RRroofPayback{} שנים. איור~\ref{fig:unit-waterfall} מראה את המעבר מהכנסה לרווח.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.92\linewidth]{fig_unit_waterfall}
+  \caption{מהכנסה לרווח תפעולי של גג אחד (אלפי \shekel{} בשנה).}
+  \label{fig:unit-waterfall}
+\end{figure}
+
+\begin{insightbox}[תובנה]
+ההחזר הוא \RRroofPayback{} שנים על גג שחוזהו נמשך \RRcontractYears{} שנים. כלומר רוב חיי החוזה מייצרים רווח נקי, ואין תלות בהצלחת הרישיון.
+\end{insightbox}
+
+\section{ניצחון משותף עם ועד הבית}\label{sec:win-win}
+
+ועד הבית אינו לקוח אלא שותף. הוא נותן גג שלא משתמשים בו, ומקבל \RRrentShare\% מהכנסות הגג, כלומר כ-\RRroofRent{} אלפי \shekel{} בשנה לגג בממוצע. התושבים מקבלים גם ירק טרי במרחק מעלית ויתרון תרבותי של חקלאות בבניין. גגון מקבלת גישה לשטח ללא רכישת קרקע. בנוסף, הגג המכוסה מפחית עומס חום, כפי שמצוין בספרות על גגות ירוקים ומחזירי אור בכלל \cite{santamouris2014}, ולכן ייתכן שיש לוועד גם עניין בבידוד. ההשפעה של מערך הידרופוני מסוים לא נמדדה ותיבדק בפיילוט.
+
+אנו מחשבים את התשלום לוועד כאחוז מההכנסה ולא כשכר דירה קבוע. כך שני הצדדים מעוניינים בגג שמצליח, ולוועד אין סיכון בלי תשואה.
+
+\begin{riskbox}[סיכון מימוני]
+ההון הנדרש לגג הוא \RRcapexRoof{} אלפי \shekel{}. עיכוב של חודשים באישורי בנייה פוגע בהחזר. התוכנית מקצה לכך מרווח מזומנים, והדיון בו מובא בפרק הכספי.
+\end{riskbox}

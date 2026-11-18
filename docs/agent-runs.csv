@@ -1,0 +1,7 @@
+order,agent,model,phase,tokens,tool_calls,minutes,output
+1,writer-strategy,Sonnet,write,78279,10,2.5,ch 1-3 + 11
+1,writer-market,Sonnet,write,77762,9,3.1,ch 4-7
+1,writer-finance,Sonnet,write,81859,9,2.7,ch 8-10
+2,qa-detector (round 1),Sonnet,red team,166629,41,5.5,25 findings (13 MAJOR)
+3,qa-fixer (round 1),Sonnet,fix,128571,16,3.3,content fixes in 10 chapters
+4,qa-detector (round 2),Sonnet,red team,126779,46,3.2,PASS · 22/25 verified fixed · 3 MINOR

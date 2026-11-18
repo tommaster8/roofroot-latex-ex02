@@ -1,0 +1,19 @@
+% Organisation at end of 2028 — mirrors data/headcount.csv (\RRheadcount people).
+\begin{tikzpicture}[level distance=17mm,
+  every node/.style={rounded corners=2mm,align=center,font=\small,
+                     minimum width=2.6cm,minimum height=10mm},
+  ceo/.style={fill=rrForest,text=white,font=\small\bfseries},
+  vp/.style={fill=rrLeaf!45,draw=rrForest,line width=0.6pt},
+  tm/.style={fill=rrCream,draw=rrStone,font=\scriptsize,minimum width=2.2cm},
+  level 1/.style={sibling distance=37mm},
+  level 2/.style={sibling distance=26mm},
+  edge from parent/.style={draw=rrForest,line width=0.8pt}]
+  \node[ceo] {מנכ"ל\\ \en{CEO}}
+    child {node[vp] {סמנכ"ל תפעול\\ \en{COO}}
+      child {node[tm] {5 מגדלים\\ עירוניים}}
+      child {node[tm] {מתקין\\ + מהנדס}}}
+    child {node[vp] {מנהל טכנולוגיות\\ \en{CTO}}
+      child {node[tm] {2 מפתחי\\ \en{RootOS}}}}
+    child {node[vp] {מנהל לקוחות\\ \en{B2B}}}
+    child {node[vp] {כספים\\ (חלקי)}};
+\end{tikzpicture}

@@ -1,0 +1,37 @@
+% Business Model Canvas (Osterwalder & Pigneur) — 9 blocks, RTL-aware.
+\begin{tikzpicture}[x=1cm,y=1cm,
+  blk/.style={draw=white,line width=1.5pt,fill=#1,rounded corners=2pt},
+  hd/.style={font=\sffamily\bfseries\small,text=rrForest,anchor=north east,align=right},
+  bd/.style={font=\scriptsize,anchor=north east,align=right,text width=2.5cm},
+  hdw/.style={hd,text width=5.4cm},
+  bdw/.style={bd,text width=6.6cm}]
+  \def\W{15}\def\H{9}
+  % top row (5 columns, read right to left)
+  \fill[blk=rrSky!55]   (12,3) rectangle (15,9);   % key partners
+  \fill[blk=rrCream]    (9,6)  rectangle (12,9);   % key activities
+  \fill[blk=rrCream]    (9,3)  rectangle (12,6);   % key resources
+  \fill[blk=rrLeaf!45]  (6,3)  rectangle (9,9);    % value proposition
+  \fill[blk=rrCream]    (3,6)  rectangle (6,9);    % relationships
+  \fill[blk=rrCream]    (3,3)  rectangle (6,6);    % channels
+  \fill[blk=rrSky!55]   (0,3)  rectangle (3,9);    % segments
+  \fill[blk=rrTerra!20] (7.5,0) rectangle (15,3);  % cost
+  \fill[blk=rrForest!20](0,0)  rectangle (7.5,3);  % revenue
+  \node[hd] at (14.85,8.85) {שותפים מרכזיים};
+  \node[bd] at (14.85,8.3) {ועדי בתים וחברות ניהול\\ מהנדסי קונסטרוקציה\\ ספקי מערכות \en{NFT}\\ עיריית תל אביב-יפו (יחידת האקלים)\\ מסעדות שכונתיות};
+  \node[hd] at (11.85,8.85) {פעילויות מרכזיות};
+  \node[bd] at (11.85,8.3) {סקר גג והתקנה\\ גידול וקטיף\\ פיתוח \en{RootOS}\\ לוגיסטיקה של ק"מ אחרון};
+  \node[hd] at (11.85,5.85) {משאבים מרכזיים};
+  \node[bd] at (11.85,5.3) {סוכן \en{RootOS} ונתוני חיישנים\\ חוזי גג ל-5 שנים\\ צוות מגדלים עירוני};
+  \node[hd] at (8.85,8.85) {הצעת ערך};
+  \node[bd] at (8.85,8.3) {\textbf{לדיירים:} הכנסה מגג מת, צינון הבניין וסל ירוק טרי.\\[3pt] \textbf{למסעדות:} ירוקים שנקטפו הבוקר, 300 מטר מהמטבח.\\[3pt] \textbf{לעירייה:} הפחתת אי-חום ו"קילומטר מזון" אפסי.};
+  \node[hd] at (5.85,8.85) {קשרי לקוחות};
+  \node[bd] at (5.85,8.3) {אפליקציית דיירים\\ "יום קטיף" חודשי\\ מנהל לקוח למסעדות};
+  \node[hd] at (5.85,5.85) {ערוצים};
+  \node[bd] at (5.85,5.3) {מכירה ישירה לוועדים\\ הפניות דייר לדייר\\ הזמנות \en{B2B} אונליין};
+  \node[hd] at (2.85,8.85) {פלחי לקוחות};
+  \node[bd] at (2.85,8.3) {בנייני מגורים 6+ קומות בגוש דן\\ מסעדות ובתי קפה\\ דיירי הבניין (מנויים)\\ חוות עירוניות (\en{SaaS})};
+  \node[hdw] at (14.85,2.85) {מבנה עלויות};
+  \node[bdw] at (14.85,2.3) {השקעה הונית לגג (\RRcapexRoof{} אלף \shekel)\\ שכר מגדלים, חומרי הזנה, מים וחשמל\\ דמי גג (\RRrentShare\% מההכנסות)\\ פיתוח תוכנה ומטה};
+  \node[hdw] at (7.35,2.85) {זרמי הכנסה};
+  \node[bdw] at (7.35,2.3) {מכירת תוצרת: \RRprice{} \shekel{} לק"ג בממוצע\\ מנויי "סל ירוק" לדיירים\\ רישיונות \en{RootOS} לחוות חיצוניות\\ מענקי אקלים עירוניים (אופציונלי)};
+\end{tikzpicture}
