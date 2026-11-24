@@ -21,6 +21,11 @@
                │ (צוות אדום)     │ דוח    │ CLS / Skill בלבד │
                └────────▲────────┘        └────────┬─────────┘
                         └──────── סבב חוזר ─────────┘
+                                 │ PASS
+                       ┌─────────▼─────────┐
+                       │ investor-critic   │  משקיע Seed ספקן: שכנוע ולוגיקה עסקית
+                       │ (Sonnet)          │──▶ שאלות פתוחות חוזרות לכותבים / לנתונים
+                       └───────────────────┘
 ```
 
 ## שלבים
@@ -37,6 +42,7 @@
 | 7 | צוות אדום, סבב 1 | `qa-reports/round-1.md` | qa-detector | Sonnet |
 | 8 | תיקון | עדכוני CLS ו-Skill | qa-fixer / Orchestrator | Opus |
 | 9 | צוות אדום, סבב 2 (אימות) | `qa-reports/round-2.md` | qa-detector | Sonnet |
+| 9.5 | ביקורת משקיע | `qa-reports/investor-N.md` | investor-critic | Sonnet |
 | 10 | README, צילומי מסך, GitHub | `README.md`, `docs/screenshots` | Orchestrator | Opus |
 
 ## ניהול משאבים

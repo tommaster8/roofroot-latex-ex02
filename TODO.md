@@ -18,6 +18,8 @@
 - [x] qa-super, qa-BiDi, qa-table, qa-code, qa-img, qa-typeset, qa-infra, qa-cls-version
 - [x] writer-he-en, fig-python, tikz-artist
 - [x] `.claude/agents`: writer, qa-detector, qa-fixer
+- [x] `.claude/agents/investor-critic` + `prompts/07-investor-review.md`
+- [ ] להריץ investor-critic סבב 1 → `qa-reports/investor-1.md`
 
 ## שלב 5–6: תוכן
 - [x] פרקים 1–3 (writer-strategy)

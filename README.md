@@ -62,6 +62,8 @@ flowchart TB
     W1 & W2 & W3 --> D["🔴 qa-detector · Sonnet<br/>צוות אדום: qa-super + 7 qa-*"]
     D -- "qa-reports/round-N.md" --> F["🔧 qa-fixer<br/>CLS / Skill / generator בלבד"]
     F -- "סבב חוזר" --> D
+    D -- "PASS" --> I["💼 investor-critic · Sonnet<br/>משקיע Seed ספקן: האם התוכנית משכנעת?"]
+    I -- "qa-reports/investor-N.md<br/>שאלות פתוחות" --> O
 ```
 
 ![agents in action](docs/screenshots/agents-in-action.png)
@@ -81,7 +83,8 @@ flowchart TB
 ### לולאת הצוות האדום
 1. **Detector** ([`qa-detector`](.claude/agents/qa-detector.md)) מריץ את [`qa_scan.py`](scripts/qa_scan.py) (בדיקות אוטומטיות של BiDi, מספרים, קוד, טבלאות, לוג ותשתית), עובר עמוד-עמוד על ה-PDF, וכותב דוח אל [`qa-reports/`](qa-reports/).
 2. **Fixer** מתקן לפי **חוק הברזל**: תקלה מערכתית מתוקנת ב-CLS (עם העלאת גרסה), ב-Skill או במחולל, ולעולם לא בשורת טקסט בודדת.
-3. כל תקלה שעלולה לחזור מקבלת **חקר אירוע** ב-[`incidents/`](incidents/) עם ארבעה חלקים: מה קרה, למה, למה לא התגלתה, ומה השתנה.
+3. **Investor-critic** ([`investor-critic`](.claude/agents/investor-critic.md), [פרומפט](prompts/07-investor-review.md)) נכנס אחרי PASS. הצוות האדום בודק שהמסמך *נכון*; הסוכן הזה בודק שהוא *משכנע*. הוא קורא את התוכנית כמו משקיע Seed שמחפש סיבה לסרב, נותן ציון לשישה היבטים (הבקשה, כלכלת יחידה, שוק, תחרות, סיכוני ביצוע, נרטיב), ומחזיר ל-Orchestrator ולכותבים את השאלות שנשארו בלי תשובה.
+4. כל תקלה שעלולה לחזור מקבלת **חקר אירוע** ב-[`incidents/`](incidents/) עם ארבעה חלקים: מה קרה, למה, למה לא התגלתה, ומה השתנה.
 
 ## בנייה (רפרודוקטיביליות)
 
@@ -107,8 +110,8 @@ make          # data → charts/tables/macros → lualatex → biber → lualate
 ├── figures/tikz/            # cover · bmc · swot · architecture · timeline · orgchart · agents
 ├── scripts/                 # build.sh · check-chapter.sh · qa_scan.py
 ├── .claude/skills/          # 11 Skills (qa-super, qa-BiDi, qa-table, qa-code, qa-img, qa-typeset, qa-infra, qa-cls-version, writer-he-en, fig-python, tikz-artist)
-├── .claude/agents/          # chapter-writer · qa-detector · qa-fixer
-├── prompts/                 # 6 קובצי פרומפט: ועדת מומחים → תשתית → כותבים → צוות אדום → מתקן → חקר אירוע
+├── .claude/agents/          # chapter-writer · qa-detector · qa-fixer · investor-critic
+├── prompts/                 # 7 קובצי פרומפט: ועדת מומחים → תשתית → כותבים → צוות אדום → מתקן → חקר אירוע → ביקורת משקיע
 ├── incidents/               # חקרי אירוע INC-001…
 ├── qa-reports/              # דוחות סבבי הצוות האדום
 ├── PRD.md · PLAN.md · TODO.md
